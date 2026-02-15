@@ -336,9 +336,62 @@ def main(page: ft.Page):
         lista.controls.remove(d.view)
         on_change_geral()
         page.update()
+    # --- APOIO / PIX ---
+    
+    chave_pix_copia_cola = "00020101021126580014br.gov.bcb.pix01364a063b34-f773-4f81-a183-b0c08e9ae4105204000053039865802BR5920GABRIEL A A DA SILVA6013RIO DE JANEIR62070503***6304A3B1"
+    
+    def fechar_pix(e):
+        page.pop_dialog()
+        page.update()
+
+    async def copiar_pix(e):
+        await ft.Clipboard().set(chave_pix_copia_cola)
+        page.show_dialog(ft.SnackBar(ft.Text("Chave Pix copiada!"), bgcolor="green"))
+        page.update()
+
+    dlg_pix = ft.AlertDialog(
+        title=ft.Text("Apoie o Projeto"),
+        content=ft.Column([
+            ft.Text("Este software é gratuito e de código aberto (Open Source). Ele foi desenvolvido para auxiliar alunos a gerenciar melhor seus períodos e continuará sendo livre para sempre. Se este programa economizou seu tempo ou ajudou no seu desenvolvimento academico, considere fazer uma doação voluntária para manter o desenvolvimento ativo e pagar os cafés das madrugadas de programação."),
+            ft.Text("Escaneie o QR Code ou copie a chave abaixo:", text_align="center"),
+            ft.Container(
+                content=ft.Image(
+                    src="pix.jpg",
+                    width=500, 
+                    height=500,
+                    fit="contain"
+                ),
+                alignment=ft.Alignment.CENTER
+                
+            ),
+            ft.TextField(
+                value=chave_pix_copia_cola, 
+                read_only=True, 
+                text_size=12, 
+                height=40,
+                border_radius=10,
+            )
+        ], tight=True, width=600, height=650, alignment="center", scroll=ft.ScrollMode.ADAPTIVE),
+        actions=[
+            ft.TextButton("Fechar", on_click=fechar_pix),
+            ft.FilledButton("Copiar Chave", icon=ft.Icons.COPY, on_click=copiar_pix),
+        ],
+        actions_alignment=ft.MainAxisAlignment.END,
+    )
+
+    def abrir_modal_pix(e):
+        page.show_dialog(dlg_pix)
+        page.update()
+
+    btn_apoio = ft.FilledButton(
+        "Apoiar", 
+        icon=ft.Icons.VOLUNTEER_ACTIVISM, 
+        style=ft.ButtonStyle(bgcolor=ft.Colors.PINK_400, color=ft.Colors.WHITE),
+        on_click=abrir_modal_pix 
+    )
 
     page.add(
-        ft.Text("Simulador de CR", size=24, weight="bold"),
+        ft.Row(controls=[ft.Text("Simulador de CR", size=24, weight="bold"), btn_apoio]),
         txt_total_creditos,
         txt_cr_atual,
         #txt_periodo,
