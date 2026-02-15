@@ -24,5 +24,5 @@ Para rodar o código no seu computador, você precisa ter o Python instalado.
 
 1. **Clone o repositório:**
    ```bash
-   git clone [https://github.com/GabrielAmaro/SimuladorCR.git](https://github.com/GabrielAmaro/SimuladorCR.git)
+   git clone https://github.com/gabrielamaroufrj/SimuladorCR.git
    cd SimuladorCR
