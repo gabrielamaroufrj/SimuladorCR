@@ -1,0 +1,45 @@
+[project]
+name = "Simulador CR"
+version = "1.0.0"
+description = "Simulador de CR"
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Amaro", email = "gabrielamaroufrj@gmail.com" }
+]
+dependencies = [
+    "flet>=0.80.1",
+    "pdfplumber",
+    "pdfminer.six",
+    "pillow",
+    "cffi",
+    "charset-normalizer",
+    "numpy==1.26.4"
+]
+
+[dependency-groups]
+dev = [
+    "flet[all]>=0.80.1",
+]
+
+[tool.flet.android]
+org = "com.amaro.simuladorcr"
+label = "Simulador CR"
+icon = "assets/icon.png"  
+
+[tool.flet.android.splash]
+image = "assets/splash.png" 
+color = "#101010"
+dark_color = "#000000"
+
+[tool.flet.linux]
+app_id = "com.amaro.simuladorcr"
+label = "Simulador CR"
+icon = "assets/icon.png"
+
+[tool.flet.windows]
+label = "Simulador CR"       
+product_name = "SimuladorCR" 
+icon = "assets/icon.png"     
+copyright = "Copyright (c) 2026 Amaro"
+company_name = "Amaro Dev"
