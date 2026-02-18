@@ -390,6 +390,13 @@ def main(page: ft.Page):
         on_click=abrir_modal_pix 
     )
 
+    btn_github = ft.Button(
+        content="Ver no GitHub",
+        icon=ft.Icons.CODE, # Ícone de código, já que o Flet não tem a logo nativa do GitHub
+        url="https://github.com/gabrielamaroufrj/SimuladorCR.git" # Substitua pelo seu link real
+    )
+
+
     page.add(
         ft.Row(controls=[ft.Text("Simulador de CR", size=24, weight="bold"), btn_apoio]),
         txt_total_creditos,
@@ -416,7 +423,8 @@ def main(page: ft.Page):
             #bgcolor="white",
             border_radius=10,
             border=ft.border.all(1, "grey300")
-        )
+        ),
+        btn_github
     )
     
     # Inicia carregando do JSON
