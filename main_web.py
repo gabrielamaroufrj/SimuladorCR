@@ -454,6 +454,12 @@ def main(page: ft.Page):
         on_click=abrir_modal_pix 
     )
 
+    btn_github = ft.Button(
+        content="Ver no GitHub",
+        icon=ft.Icons.CODE, # Ícone de código, já que o Flet não tem a logo nativa do GitHub
+        url="https://github.com/gabrielamaroufrj/SimuladorCR.git" # Substitua pelo seu link real
+    )
+
     btn_upload = ft.Button(
             content="Upload",
             icon=ft.Icons.UPLOAD,
@@ -513,7 +519,9 @@ def main(page: ft.Page):
             #bgcolor="white",
             border_radius=10,
             border=ft.border.all(1, "grey300")
-        )
+        
+        ),
+        btn_github
     )
     
     # Inicia carregando do JSON
@@ -526,5 +534,6 @@ if __name__ == "__main__":
     # AQUI MANTEMOS O ft.run COM A CONFIGURAÇÃO DE UPLOAD_DIR
     ft.run(
         main,
-        upload_dir="uploads",  # Pasta onde o picker.upload vai salvar
+        upload_dir="uploads",
+        port=int(os.getenv("PORT", 8000)
     )
