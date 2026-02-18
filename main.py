@@ -405,7 +405,7 @@ def main(page: ft.Page):
         ft.Row(
             controls=[
                 ft.Button(
-                    content="Pick files",
+                    content="Selecionar Boletim",
                     icon=ft.Icons.UPLOAD_FILE,
                     on_click=handle_pick_files,
                 ),
