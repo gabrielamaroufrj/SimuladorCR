@@ -16,8 +16,6 @@ class State:
     file_picker: ft.FilePicker | None = None
     picked_files: list[ft.FilePickerFile] = field(default_factory=list)
 
-state = State()
-
 # Nome do arquivo onde os dados ficarão salvos
 ARQUIVO_DADOS = "dados_cr.json"
 MARCADOR_FIM = "Totais: no período"
@@ -91,6 +89,7 @@ def main(page: ft.Page):
     #page.bgcolor = "grey90" # Corrigido para versão nova
 
     disciplinas = []
+    state = State()
     
 
 
@@ -156,22 +155,21 @@ def main(page: ft.Page):
                 "nota": d.nota.value
             })
         
-        # Grava no arquivo JSON (Python Nativo)
+        # Grava no armazenamento do navegador do usuário (Client Storage)
         try:
-            with open(ARQUIVO_DADOS, "w", encoding="utf-8") as f:
-                json.dump(dados, f, indent=4)
+            page.client_storage.set("dados_cr", dados)
         except Exception as ex:
-            print(f"Erro ao salvar: {ex}")
+            print(f"Erro ao salvar no navegador: {ex}")
 
     def carregar_tudo():
-        # Verifica se o arquivo existe antes de tentar ler
-        if not os.path.exists(ARQUIVO_DADOS):
-            adicionar_disciplina() # Começa do zero se não tiver arquivo
+        # Verifica se existem dados salvos no navegador deste usuário
+        if not page.client_storage.contains_key("dados_cr"):
+            adicionar_disciplina() # Começa do zero se não tiver histórico
             return
 
         try:
-            with open(ARQUIVO_DADOS, "r", encoding="utf-8") as f:
-                dados = json.load(f)
+            # Recupera os dados diretamente do navegador
+            dados = page.client_storage.get("dados_cr")
 
             # Restaura globais
             txt_total_creditos.value = dados.get("total_creditos", "")
@@ -183,14 +181,14 @@ def main(page: ft.Page):
             for item in lista_salva:
                 adicionar_disciplina(dados=item)
             
-            # Se a lista estava vazia no arquivo, adiciona uma em branco
+            # Se a lista estava vazia no armazenamento, adiciona uma em branco
             if not lista_salva:
                 adicionar_disciplina()
 
             calcular_cr()
             
         except Exception as ex:
-            print(f"Erro ao ler arquivo: {ex}")
+            print(f"Erro ao ler dados do navegador: {ex}")
             adicionar_disciplina()
 
     # Evento unificado
