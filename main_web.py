@@ -130,14 +130,11 @@ def main(page: ft.Page):
                 )
             ]
         )
-
-        # MÁGICA DO RENDER:
-        # O arquivo agora está salvo na pasta "uploads" do servidor.
-        # Montamos o caminho manualmente:
         caminho_final = os.path.join("uploads", arquivo.name)
-        
-        # Agora chamamos sua função de leitura com o caminho correto
         leitura_pdf(caminho_final)
+        if os.path.exists(caminho_final):
+            os.remove(caminho_final)
+            print(f"Arquivo {arquivo.name} deletado do servidor por segurança.")
         
         page.show_dialog(ft.SnackBar(ft.Text(f"Sucesso: {arquivo.name}"), bgcolor="green"))
         page.update()
