@@ -1,4 +1,4 @@
-# 📊 Simulador de CR (Coeficiente de Rendimento)
+# 📊 ZoeCR - Simulador de CR (Coeficiente de Rendimento)
 
 > Um aplicativo multiplataforma (Android, Linux, Windows) desenvolvido em Python e Flet para auxiliar estudantes universitários no cálculo e projeção de seu desempenho acadêmico.
 
@@ -24,5 +24,5 @@ Para rodar o código no seu computador, você precisa ter o Python instalado.
 
 1. **Clone o repositório:**
    ```bash
-   git clone https://github.com/gabrielamaroufrj/SimuladorCR.git
-   cd SimuladorCR
+   git clone https://github.com/gabrielamaroufrj/ZoeCR.git
+   cd ZoeCR
