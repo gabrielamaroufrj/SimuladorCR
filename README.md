@@ -2,6 +2,7 @@
 # 📊 ZoeCR - Simulador de CR (Coeficiente de Rendimento)
 
 > Um aplicativo multiplataforma (Android, Linux, Windows) desenvolvido em Python e Flet para auxiliar estudantes universitários no cálculo e projeção de seu desempenho acadêmico.
+> Versão web disponível em: zoecr.onrender.com/ (Esta versão pode demorar a iniciar já utilizo um plano gratuito para hospedar o app no Render)
 
 ![Status](https://img.shields.io/badge/Status-Em_Desenvolvimento-yellow)
 ![License](https://img.shields.io/badge/License-MIT-green)
